@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="false"
-        android:label="Assignment 2"
+        android:label="CSCI 412 App"
         android:theme="@style/Theme.Assignment2">
+        <service
+            android:name=".MyService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
         <activity android:name=".SecondActivity" android:exported="true">
             <intent-filter>
                 <action android:name="edu.csci412.assignment2.SHOW_CHALLENGES" />

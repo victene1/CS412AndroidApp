@@ -13,13 +13,19 @@
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
-        <activity android:name=".SecondActivity" android:exported="true">
+        <activity
+            android:name=".SecondActivity"
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="edu.csci412.assignment2.SHOW_CHALLENGES" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

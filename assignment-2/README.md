@@ -12,9 +12,15 @@ Android app for CS412. Written in Kotlin with Jetpack Compose using the [Android
 - Send Broadcast sends a custom broadcast. The broadcast receiver displays "Broadcast received!" when it receives the broadcast.
 - The broadcast receiver is registered in `onStart()` and unregistered in `onStop()`.
 
+## Assignment 5
+
+- View Image Activity opens the third activity.
+- Capture Image opens the device camera with the Activity Result API.
+- The captured camera preview is displayed below the button.
+
 ## Device used
 
-Pixel 5 emulator, Android 16 (API 36). The Assignment 2 version ran successfully, and both intent buttons and the return button worked.
+Pixel 5 emulator, Android 16 (API 36). The Assignment 2 version ran successfully, and both intent buttons and the return button worked. Assignment 5 was also tested successfully by opening the third activity, capturing an emulator camera image, and displaying it below the button.
 
 ## Run it
 

@@ -14,6 +14,7 @@ import android.os.IBinder
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -74,6 +75,9 @@ class MainActivity : ComponentActivity() {
                         setPackage(packageName)
                     })
                 },
+                onViewImageActivity = {
+                    startActivity(Intent(this, ThirdActivity::class.java))
+                },
                 onStartService = ::requestPermissionAndStartService,
                 onBindService = ::bindAssignmentService,
                 onSendBroadcast = {
@@ -86,12 +90,12 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         val filter = IntentFilter(ACTION_CUSTOM_BROADCAST)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            @Suppress("DEPRECATION")
-            registerReceiver(receiver, filter)
-        }
+        ContextCompat.registerReceiver(
+            this,
+            receiver,
+            filter,
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
         receiverRegistered = true
     }
 
@@ -146,6 +150,7 @@ private fun MainScreen(
     gradeText: String,
     onExplicitClick: () -> Unit,
     onImplicitClick: () -> Unit,
+    onViewImageActivity: () -> Unit,
     onStartService: () -> Unit,
     onBindService: () -> Unit,
     onSendBroadcast: () -> Unit
@@ -161,6 +166,7 @@ private fun MainScreen(
         Text("Student ID: 1174900")
         Button(onClick = onExplicitClick) { Text("Start Activity Explicitly") }
         Button(onClick = onImplicitClick) { Text("Start Activity Implicitly") }
+        Button(onClick = onViewImageActivity) { Text("View Image Activity") }
         Button(onClick = onStartService) { Text("Start Service") }
         Row(
             verticalAlignment = Alignment.CenterVertically,
